@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
-<h1>hello world<h1>
+<h1>hello<h1>
 
 
 //  In jenkins you can change port dynamically
