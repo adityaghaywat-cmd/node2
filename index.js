@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
   //res.sendFile(path.join(__dirname, 'index.html'));
-  res.send("hello");
+  res.send("hello world");
 });
 
 app.listen(PORT, () => {
