@@ -1,45 +1,17 @@
 const express = require("express");
-const { MongoClient } = require("mongodb");
 
 const app = express();
-app.use(express.json());
+const port = 3000;
 
-// Replica Set Connection String
-const url =
-  "mongodb://mongodb-0.mongodb:27017,mongodb-1.mongodb:27017/?replicaSet=rs0";
+app.get("/", (req, res) => {
+    res.send(`
+        <h1>Hello Aditya 👋</h1>
+        <h2>My Node.js Project</h2>
+        <h3>Deployed using Jenkins + PM2</h3>
+        <h3>Version: 2.0.0</h3>
+    `);
+});
 
-const client = new MongoClient(url);
-
-async function start() {
-  await client.connect();
-
-  console.log("Connected to MongoDB Replica Set");
-
-  const db = client.db("codingwale");
-  const collection = db.collection("students");
-
-  // Insert Data
-  app.get("/add", async (req, res) => {
-
-    const result = await collection.insertOne({
-      name: "Aarush",
-      age: 25,
-      created: new Date()
-    });
-
-    res.send(result);
-  });
-
-  app.get("/", async (req, res) => {
-
-    const students = await collection.find().toArray();
-
-    res.json(students);
-  });
-
-  app.listen(3000, () => {
-    console.log("Server running on port 3000");
-  });
-}
-
-start();
+app.listen(port, () => {
+    console.log(`Node.js app running on port ${port}`);
+});
